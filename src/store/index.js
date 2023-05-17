@@ -2,7 +2,8 @@ import {createStore} from 'redux';
 
 
 const initialState={
-    counter:0
+    counter:0,
+    showCounter:true
 }
 
 // Reducer
@@ -10,13 +11,23 @@ const counterReducer=(state=initialState,action)=>{
     if(action.type==='INC_COUNTER'){
         return{
             ...state,
-            counter:state.counter+1
+            counter:state.counter+action.payload.amount,
+            showCounter: state.showCounter
         }
     }
     if(action.type==='DEC_COUNTER'){
         return{
             ...state,
-            counter:state.counter-1
+            counter:state.counter-1,
+            showCounter: state.showCounter
+        }
+    }
+
+    if(action.type==='TOGGLE_COUNTER'){
+        return{
+            ...state,
+            counter: state.counter,
+            showCounter:!state.showCounter
         }
     }
     return state;
