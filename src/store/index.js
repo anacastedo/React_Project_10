@@ -11,7 +11,7 @@ const counterSlice = createSlice({
     initialState:initialState,  // or just initialState
     reducers:{
         increment(state, action){
-            state.counter=state.counter+action.payload.amount;
+            state.counter=state.counter+action.payload;
         },
         decrement(state){
             state.counter--;
@@ -31,11 +31,8 @@ const store=configureStore({
     reducer:counterSlice.reducer, //it can be an object of reducers
 })
 
-// Subscription
-store.subscribe(()=>{
-    console.log('[Subscription]',store.getState());
-}
-)
+// Actions
+export const counterActions=counterSlice.actions;
 
 
 export default store;
